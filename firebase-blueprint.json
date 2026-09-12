@@ -1,0 +1,176 @@
+{
+  "entities": {
+    "Admin": {
+      "title": "Admin",
+      "description": "Authorized administrators",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "role"]
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "Global website settings and live elements",
+      "type": "object",
+      "properties": {
+        "key": { "type": "string" },
+        "value": { "type": "object" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["key", "value"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Patient appointment requests",
+      "type": "object",
+      "properties": {
+        "patientName": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "country": { "type": "string" },
+        "preferredDate": { "type": "string", "format": "date-time" },
+        "consultationType": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string" },
+        "notes": { "type": "string" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["patientName", "phone"]
+    },
+    "Treatment": {
+      "title": "Treatment",
+      "description": "Areas of Expertise / Treatments",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "order": { "type": "number" },
+        "isVisible": { "type": "boolean" }
+      },
+      "required": ["title", "description"]
+    },
+    "CancerType": {
+      "title": "Cancer Type",
+      "description": "Cancer Types treated",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "introduction": { "type": "string" },
+        "symptoms": { "type": "string" },
+        "riskFactors": { "type": "string" },
+        "diagnosis": { "type": "string" },
+        "treatmentOptions": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "seoTitle": { "type": "string" },
+        "seoDescription": { "type": "string" }
+      },
+      "required": ["title", "slug"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Patient testimonials",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "text": { "type": "string" },
+        "rating": { "type": "number" },
+        "source": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "isVisible": { "type": "boolean" },
+        "order": { "type": "number" }
+      },
+      "required": ["name", "text"]
+    },
+    "VideoTestimonial": {
+      "title": "Video Testimonial",
+      "description": "Video testimonials",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "patientName": { "type": "string" },
+        "videoUrl": { "type": "string" },
+        "thumbnailUrl": { "type": "string" },
+        "isVisible": { "type": "boolean" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "videoUrl"]
+    },
+    "Blog": {
+      "title": "Blog",
+      "description": "Blog posts and articles",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "content": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "category": { "type": "string" },
+        "author": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "status": { "type": "string" },
+        "publishedAt": { "type": "string", "format": "date-time" },
+        "seoTitle": { "type": "string" },
+        "seoDescription": { "type": "string" }
+      },
+      "required": ["title", "slug", "content"]
+    },
+    "Faq": {
+      "title": "Faq",
+      "description": "Frequently Asked Questions",
+      "type": "object",
+      "properties": {
+        "question": { "type": "string" },
+        "answer": { "type": "string" },
+        "category": { "type": "string" },
+        "order": { "type": "number" },
+        "isVisible": { "type": "boolean" }
+      },
+      "required": ["question", "answer"]
+    },
+    "PatientJourney": {
+      "title": "Patient Journey",
+      "description": "Steps in patient journey",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "order": { "type": "number" },
+        "icon": { "type": "string" },
+        "isVisible": { "type": "boolean" }
+      },
+      "required": ["title", "description"]
+    },
+    "InternationalPatient": {
+      "title": "International Patient",
+      "description": "Country-specific info",
+      "type": "object",
+      "properties": {
+        "country": { "type": "string" },
+        "description": { "type": "string" },
+        "visaInfo": { "type": "string" },
+        "order": { "type": "number" },
+        "isVisible": { "type": "boolean" }
+      },
+      "required": ["country", "description"]
+    }
+  },
+  "firestore": {
+    "/admins/{documentId}": { "schema": { "$ref": "#/entities/Admin" }, "description": "Admins" },
+    "/settings/{documentId}": { "schema": { "$ref": "#/entities/Setting" }, "description": "Settings" },
+    "/appointments/{documentId}": { "schema": { "$ref": "#/entities/Appointment" }, "description": "Appointments" },
+    "/treatments/{documentId}": { "schema": { "$ref": "#/entities/Treatment" }, "description": "Treatments" },
+    "/cancerTypes/{documentId}": { "schema": { "$ref": "#/entities/CancerType" }, "description": "Cancer Types" },
+    "/testimonials/{documentId}": { "schema": { "$ref": "#/entities/Testimonial" }, "description": "Testimonials" },
+    "/videoTestimonials/{documentId}": { "schema": { "$ref": "#/entities/VideoTestimonial" }, "description": "Video Testimonials" },
+    "/blogs/{documentId}": { "schema": { "$ref": "#/entities/Blog" }, "description": "Blogs" },
+    "/faqs/{documentId}": { "schema": { "$ref": "#/entities/Faq" }, "description": "FAQs" },
+    "/patientJourneys/{documentId}": { "schema": { "$ref": "#/entities/PatientJourney" }, "description": "Patient Journeys" },
+    "/internationalPatients/{documentId}": { "schema": { "$ref": "#/entities/InternationalPatient" }, "description": "International Patients" }
+  }
+}
