@@ -49,10 +49,6 @@ export default function Footer() {
           <h4 className="text-white font-serif text-xl mb-4">Contact</h4>
           <ul className="space-y-4 text-sm">
             <li>
-              <p className="text-accent mb-1 font-medium">ClearMedi Multispeciality Hospital</p>
-              <p>Kharar, Punjab</p>
-            </li>
-            <li>
               <a href="tel:+917087491471" className="hover:text-white transition-colors flex items-center">
                 +91 70874 91471
               </a>

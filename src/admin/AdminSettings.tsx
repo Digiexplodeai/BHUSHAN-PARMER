@@ -5,8 +5,8 @@ import { db } from '../firebase';
 
 export default function AdminSettings() {
   const [formData, setFormData] = useState({
-    hospitalName: 'ClearMedi Multispeciality Hospital',
-    address: 'Kharar, Punjab',
+    hospitalName: '',
+    address: '',
     phone: '+91 70874 91471',
     email: 'drbhushanparmar@gmail.com',
     whatsappNumber: '+917087491471',

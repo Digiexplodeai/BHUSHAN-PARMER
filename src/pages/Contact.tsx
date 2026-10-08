@@ -49,13 +49,6 @@ export default function Contact() {
             <h3 className="font-serif text-2xl text-primary mb-6">Contact Information</h3>
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
-                <MapPin className="w-6 h-6 text-accent shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-medium text-charcoal">Hospital Address</h4>
-                  <p className="text-softgrey text-sm mt-1">ClearMedi Multispeciality Hospital, Kharar, Punjab</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
                 <Phone className="w-6 h-6 text-accent shrink-0 mt-1" />
                 <div>
                   <h4 className="font-medium text-charcoal">Phone Number</h4>
