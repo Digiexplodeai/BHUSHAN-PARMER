@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,21 +26,19 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-4 z-50 transition-all duration-300 w-full px-4 md:px-8">
+    <header className="sticky top-0 md:top-4 z-50 transition-all duration-300 w-full px-0 md:px-8">
       <div 
         className={clsx(
-          "max-w-7xl mx-auto flex justify-between items-center transition-all duration-300 rounded-full px-6 md:px-8",
-          isScrolled
-            ? 'bg-white/90 backdrop-blur-md shadow-lg border border-gray-200/50 py-3'
-            : 'bg-transparent py-4'
+          "max-w-7xl mx-auto flex justify-between items-center transition-all duration-300 px-4 md:px-8",
+          "bg-white/95 md:bg-white/90 backdrop-blur-md border-b md:border border-gray-200/50 shadow-sm md:shadow-lg md:rounded-full py-2.5 md:py-3"
         )}
       >
         <Link to="/" className="flex items-center space-x-2 z-50">
           <div className="flex flex-col">
-            <span className="font-serif text-2xl tracking-tight text-primary leading-none">
+            <span className="font-serif text-xl md:text-2xl tracking-tight text-primary leading-none">
               Dr. Bhushan Parmar
             </span>
-            <span className="text-xs text-secondary tracking-widest uppercase mt-1">
+            <span className="text-[10px] md:text-xs text-secondary tracking-widest uppercase mt-0.5">
               Medical Oncologist
             </span>
           </div>
@@ -76,45 +74,48 @@ export default function Navbar() {
 
         {/* Mobile menu toggle */}
         <button
-          className="lg:hidden text-primary z-50"
+          className="lg:hidden text-primary p-1.5 focus:outline-none z-50"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Nav */}
-      {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="lg:hidden mt-3 w-full bg-white/95 backdrop-blur-xl shadow-2xl rounded-3xl border border-gray-200/70 py-6 px-6 z-50 overflow-hidden"
-        >
-          <div className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden w-full bg-white/95 backdrop-blur-xl shadow-xl border-b border-gray-200/70 px-6 py-5 z-40 overflow-hidden"
+          >
+            <div className="flex flex-col space-y-3">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={clsx(
+                    "text-base font-medium transition-colors py-1.5",
+                    location.pathname === link.path ? "text-accent font-semibold" : "text-charcoal hover:text-primary"
+                  )}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
               <Link
-                key={link.name}
-                to={link.path}
-                className={clsx(
-                  "text-base font-medium transition-colors py-1",
-                  location.pathname === link.path ? "text-accent font-semibold" : "text-charcoal hover:text-primary"
-                )}
+                to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
+                className="bg-primary text-white text-center py-3 mt-2 text-sm font-medium rounded-xl hover:bg-charcoal transition-colors shadow-sm"
               >
-                {link.name}
+                Book Consultation
               </Link>
-            ))}
-            <Link
-              to="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="bg-primary text-white text-center py-3 mt-2 text-sm font-medium rounded-full hover:bg-charcoal transition-colors shadow-sm"
-            >
-              Book Consultation
-            </Link>
-          </div>
-        </motion.div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

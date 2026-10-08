@@ -149,33 +149,33 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Marquee Trust Indicators */}
-        <div className="absolute bottom-0 left-0 w-full bg-primary text-white/90 overflow-hidden py-3 border-t border-accent/30 z-20">
-          <div className="flex w-max whitespace-nowrap text-[11px] sm:text-xs tracking-widest uppercase font-medium animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:transform-none">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="flex items-center">
-                <span className="mx-6 sm:mx-8">Precision Oncology</span>
-                <span className="text-accent">•</span>
-                <span className="mx-6 sm:mx-8">Evidence-Based Care</span>
-                <span className="text-accent">•</span>
-                <span className="mx-6 sm:mx-8">Patient-First Approach</span>
-                <span className="text-accent">•</span>
-                <span className="mx-6 sm:mx-8">20+ Years Experience</span>
-                <span className="text-accent">•</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Scroll Cue */}
         <motion.div 
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-16 left-8 md:left-auto md:right-1/2 md:translate-x-1/2 text-charcoal/30 hidden md:block"
+          className="absolute bottom-6 left-8 md:left-auto md:right-1/2 md:translate-x-1/2 text-charcoal/30 hidden md:block"
         >
           <ChevronDown className="w-6 h-6" />
         </motion.div>
       </section>
+
+      {/* Marquee Trust Indicators (Placed cleanly after Hero) */}
+      <div className="w-full bg-primary text-white/90 overflow-hidden py-3.5 border-y border-accent/30 relative z-20">
+        <div className="flex w-max whitespace-nowrap text-[11px] sm:text-xs tracking-widest uppercase font-medium animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:transform-none">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="flex items-center">
+              <span className="mx-6 sm:mx-8">Precision Oncology</span>
+              <span className="text-accent">•</span>
+              <span className="mx-6 sm:mx-8">Evidence-Based Care</span>
+              <span className="text-accent">•</span>
+              <span className="mx-6 sm:mx-8">Patient-First Approach</span>
+              <span className="text-accent">•</span>
+              <span className="mx-6 sm:mx-8">20+ Years Experience</span>
+              <span className="text-accent">•</span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* About Section */}
       <section className="py-16 md:py-32 bg-white relative">
@@ -192,7 +192,7 @@ export default function Home() {
                 <div className="w-full h-auto aspect-[4/5] bg-gray-200 flex items-center justify-center text-gray-400">Doctor Photo</div>
               )}
             </div>
-            <div className="absolute -bottom-4 -right-2 md:-bottom-8 md:-right-8 bg-ivory p-4 md:p-6 shadow-xl rounded-xl md:rounded-none max-w-[150px] md:max-w-[200px] border border-primary/10">
+            <div className="mt-4 md:mt-0 md:absolute md:-bottom-8 md:-right-8 bg-ivory p-4 md:p-6 shadow-md md:shadow-xl rounded-xl md:rounded-none max-w-[200px] border border-primary/10 mx-auto md:mx-0 text-center md:text-left">
               <span className="font-serif text-2xl md:text-3xl text-primary block mb-1">{aboutData.badgeTitle || 'MD'}</span>
               <span className="text-[10px] md:text-xs uppercase tracking-widest text-softgrey">{aboutData.badgeSubtitle || 'Medical Oncology'}</span>
             </div>
