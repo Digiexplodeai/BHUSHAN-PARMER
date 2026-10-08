@@ -36,61 +36,68 @@ export default function Highlights() {
   }, []);
 
   if (loading || highlights.length === 0) {
-    return null; // or a loading state if preferred, but null is better to avoid layout jump
+    return null;
   }
 
   return (
-    <section className="py-24 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto bg-slate-50/50 rounded-3xl p-8 md:p-12 lg:p-16 border border-slate-100">
-        <div className="text-center mb-16">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent bg-accent/10 px-4 py-2 rounded-full mb-4 inline-block">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-ivory/50">
+      <div className="max-w-7xl mx-auto bg-white/80 backdrop-blur-xs rounded-3xl p-6 sm:p-10 md:p-12 lg:p-16 border border-primary/8 shadow-xs">
+        {/* Header */}
+        <div className="text-center mb-10 sm:mb-14">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent bg-accent/15 px-4 py-1.5 rounded-full inline-block mb-3">
             Why Choose Us
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-charcoal mt-4 mb-6">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-charcoal mb-4">
             Key Highlights
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-softgrey max-w-2xl mx-auto leading-relaxed font-light">
             Our commitment to excellence ensures you receive the highest standard of care in a supportive and advanced environment.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           {highlights.map((highlight, index) => (
             <motion.div
               key={highlight.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white p-8 rounded-2xl border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 relative overflow-hidden group flex flex-col h-full"
+              transition={{ delay: index * 0.08, duration: 0.5 }}
+              className="bg-ivory/60 p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-primary/10 hover:shadow-lg transition-all duration-300 relative overflow-hidden group flex flex-col h-full"
             >
-              {/* Decorative gradient blob */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform duration-500" />
-              
+              {/* Highlight Image or Icon */}
               {highlight.imageUrl ? (
-                <div className="w-full h-48 sm:h-56 mb-6 rounded-2xl overflow-hidden flex-shrink-0 shadow-sm relative border border-slate-100">
-                  <img src={highlight.imageUrl} alt={highlight.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="w-full h-44 sm:h-52 mb-5 rounded-xl overflow-hidden flex-shrink-0 shadow-xs relative border border-primary/5 bg-slate-100">
+                  <img 
+                    src={highlight.imageUrl} 
+                    alt={highlight.title} 
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
+                    loading="lazy"
+                  />
                 </div>
               ) : (
-                <div className="w-16 h-16 bg-slate-50 shadow-sm border border-slate-100 rounded-2xl flex items-center justify-center mb-6 overflow-hidden flex-shrink-0 relative z-10">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white shadow-xs border border-primary/10 rounded-2xl flex items-center justify-center mb-5 overflow-hidden flex-shrink-0">
                   {highlight.iconName && iconMap[highlight.iconName] ? (
                     (() => {
                       const Icon = iconMap[highlight.iconName];
-                      return <Icon className="w-8 h-8 text-accent" />;
+                      return <Icon className="w-7 h-7 text-accent" />;
                     })()
                   ) : (
-                    <CheckCircle2 className="w-8 h-8 text-accent" />
+                    <CheckCircle2 className="w-7 h-7 text-accent" />
                   )}
                 </div>
               )}
               
-              <div className="mb-4">
-                <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-primary text-white shadow-sm">
+              {/* Badge */}
+              <div className="mb-3">
+                <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs sm:text-sm font-semibold bg-primary text-ivory tracking-wide shadow-xs">
                   {highlight.title}
                 </span>
               </div>
               
-              <p className="text-slate-600 leading-relaxed text-sm md:text-base flex-grow">
+              {/* Description */}
+              <p className="text-charcoal/85 leading-relaxed text-sm sm:text-base font-light flex-grow">
                 {highlight.description}
               </p>
             </motion.div>
