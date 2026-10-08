@@ -75,36 +75,61 @@ export default function Home() {
         {/* Grain Texture */}
         <div className="absolute inset-0 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col lg:flex-row items-center relative z-10 gap-10 lg:gap-14">
-          
-          {/* Left Column: Editorial Text & CTAs (55%) */}
-          <div className="w-full lg:w-[55%] flex flex-col justify-center text-center lg:text-left pr-0 lg:pr-6">
-            <motion.div 
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              {/* Eyebrow */}
-              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-accent mb-3 sm:mb-4 inline-block">
-                {heroData.label || 'Precision Oncology'}
-              </span>
-              
-              {/* Main Headline */}
-              <h1 className="font-serif text-3.5xl sm:text-5xl md:text-6xl lg:text-6.5xl xl:text-7xl leading-[1.1] text-charcoal mb-5 sm:mb-6 tracking-tight">
-                {heroData.heading1} <br className="hidden sm:inline" />
-                <span className="italic text-accent relative inline-block">
-                  {heroData.heading2}
-                  <motion.div 
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.8, delay: 0.4, ease: "circOut" }}
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-accent origin-left"
-                  />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-14 items-center">
+            
+            {/* Left Column (Desktop 7 cols / Mobile contains headline, photo, description, buttons) */}
+            <div className="lg:col-span-7 flex flex-col justify-center text-center lg:text-left pr-0 lg:pr-6">
+              <motion.div 
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                {/* Eyebrow */}
+                <span className="text-xs font-semibold uppercase tracking-[0.22em] text-accent mb-3 sm:mb-4 inline-block">
+                  {heroData.label || 'Precision Oncology'}
                 </span>
-              </h1>
-              
+                
+                {/* Main Headline */}
+                <h1 className="font-serif text-3.5xl sm:text-5xl md:text-6xl lg:text-6.5xl xl:text-7xl leading-[1.1] text-charcoal mb-4 sm:mb-6 tracking-tight">
+                  {heroData.heading1} <br className="hidden sm:inline" />
+                  <span className="italic text-accent relative inline-block">
+                    {heroData.heading2}
+                    <motion.div 
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.8, delay: 0.4, ease: "circOut" }}
+                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-accent origin-left"
+                    />
+                  </span>
+                </h1>
+              </motion.div>
+
+              {/* Mobile Doctor Photo — Appears prominently above description & CTAs on mobile */}
+              <div className="lg:hidden my-5 flex justify-center">
+                <motion.div 
+                  initial={{ scale: 1.02, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="relative w-full max-w-[340px] sm:max-w-[380px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-primary/15 bg-white mx-auto"
+                >
+                  {authenticDoctorPhoto ? (
+                    <img 
+                      src={authenticDoctorPhoto} 
+                      alt="Dr. Bhushan Parmar - Consultant Medical Oncologist" 
+                      className="w-full h-full object-cover object-top"
+                      loading="eager"
+                    />
+                  ) : (
+                    <div className="w-full h-full min-h-[320px] bg-slate-100 flex items-center justify-center text-slate-400">
+                      Doctor Photograph
+                    </div>
+                  )}
+                </motion.div>
+              </div>
+
               {/* Supporting Paragraph */}
-              <p className="text-base sm:text-lg md:text-xl text-softgrey max-w-xl mx-auto lg:mx-0 mb-8 sm:mb-10 font-light leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-softgrey max-w-xl mx-auto lg:mx-0 mb-7 sm:mb-10 font-light leading-relaxed">
                 {heroData.paragraph}
               </p>
               
@@ -124,30 +149,31 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
-            </motion.div>
-          </div>
-          
-          {/* Right Column: Prominent Authentic Doctor Portrait (45%) */}
-          <div className="w-full lg:w-[45%] flex items-center justify-center">
-            <motion.div 
-              initial={{ scale: 1.02, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[460px] aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] max-h-[580px] rounded-3xl overflow-hidden shadow-2xl border border-primary/15 bg-white mx-auto"
-            >
-              {authenticDoctorPhoto ? (
-                <img 
-                  src={authenticDoctorPhoto} 
-                  alt="Dr. Bhushan Parmar - Consultant Medical Oncologist" 
-                  className="w-full h-full object-cover object-top"
-                  loading="eager"
-                />
-              ) : (
-                <div className="w-full h-full min-h-[360px] bg-slate-100 flex items-center justify-center text-slate-400">
-                  Doctor Photograph
-                </div>
-              )}
-            </motion.div>
+            </div>
+            
+            {/* Desktop Right Column: Prominent Authentic Doctor Portrait (Hidden on mobile) */}
+            <div className="hidden lg:flex lg:col-span-5 items-center justify-center">
+              <motion.div 
+                initial={{ scale: 1.02, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="relative w-full max-w-[440px] aspect-[4/5] max-h-[580px] rounded-3xl overflow-hidden shadow-2xl border border-primary/15 bg-white mx-auto"
+              >
+                {authenticDoctorPhoto ? (
+                  <img 
+                    src={authenticDoctorPhoto} 
+                    alt="Dr. Bhushan Parmar - Consultant Medical Oncologist" 
+                    className="w-full h-full object-cover object-top"
+                    loading="eager"
+                  />
+                ) : (
+                  <div className="w-full h-full min-h-[360px] bg-slate-100 flex items-center justify-center text-slate-400">
+                    Doctor Photograph
+                  </div>
+                )}
+              </motion.div>
+            </div>
+
           </div>
         </div>
 
