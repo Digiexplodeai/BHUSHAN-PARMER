@@ -40,12 +40,12 @@ export default function About() {
   return (
     <div className="bg-ivory min-h-screen pb-24">
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto">
+      <section className="pt-16 md:pt-24 pb-12 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-softgrey mb-4 block">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-softgrey mb-3 md:mb-4 block">
             {aboutData?.label || 'About'}
           </span>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-charcoal mb-8 leading-tight">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-charcoal mb-6 md:mb-8 leading-tight">
             {aboutData?.heading || 'Meet Dr. Bhushan Parmar'}
           </h1>
         </div>
@@ -53,11 +53,11 @@ export default function About() {
 
       {/* Content Section */}
       <section className="px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div className="sticky top-24">
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 shadow-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          <div className="lg:sticky lg:top-24 max-w-md mx-auto lg:max-w-none w-full">
+            <div className="aspect-[4/5] sm:aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 shadow-xl border border-gray-100">
               {aboutData?.imageUrl ? (
-                <img src={aboutData.imageUrl} alt="Dr. Bhushan Parmar" className="w-full h-full object-cover" />
+                <img src={aboutData.imageUrl} alt="Dr. Bhushan Parmar" className="w-full h-full object-cover object-top" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-400">No Image Available</div>
               )}

@@ -86,17 +86,20 @@ export default function Navbar() {
       {/* Mobile Nav */}
       {mobileMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="lg:hidden absolute top-full left-0 w-full bg-ivory shadow-lg border-t border-primary/10 py-4 px-4"
+          exit={{ opacity: 0, y: -10 }}
+          className="lg:hidden mt-3 w-full bg-white/95 backdrop-blur-xl shadow-2xl rounded-3xl border border-gray-200/70 py-6 px-6 z-50 overflow-hidden"
         >
           <div className="flex flex-col space-y-4">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className="text-lg font-medium text-charcoal"
+                className={clsx(
+                  "text-base font-medium transition-colors py-1",
+                  location.pathname === link.path ? "text-accent font-semibold" : "text-charcoal hover:text-primary"
+                )}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
@@ -105,7 +108,7 @@ export default function Navbar() {
             <Link
               to="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="bg-primary text-white text-center py-3 mt-4 text-sm font-medium"
+              className="bg-primary text-white text-center py-3 mt-2 text-sm font-medium rounded-full hover:bg-charcoal transition-colors shadow-sm"
             >
               Book Consultation
             </Link>
